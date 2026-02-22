@@ -1,65 +1,237 @@
-import Image from "next/image";
+"use client";
+
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import CarCard from "./component/CarCard";
+import ReviewCard from "./component/ReviewCard";
+
+const cars = [
+  { name: "Swift Dzire", price: "11", image: "/cars/dzire.png" },
+  { name: "Honda Amaze", price: "12", image: "/cars/amaze.png" },
+  { name: "Toyota Etios", price: "12", image: "/cars/etios.png" },
+  { name: "Maruti Ertiga", price: "13", image: "/cars/ertiga.png" },
+];
+const reviews = [
+  {
+    name: "Sampath Kumar",
+    rating: 5,
+    time: "5 months ago",
+    review:
+      "Driver was very good and gave best service. Very professional and polite. Overall excellent service.",
+  },
+  {
+    name: "Nairita Paul",
+    rating: 5,
+    time: "1 year ago",
+    review:
+      "Amazing experience with Satyam Travel. Very well coordinated and professional service.",
+  },
+  {
+    name: "Priya Sharma",
+    rating: 5,
+    time: "3 months ago",
+    review:
+      "Excellent service for solo travel. Felt safe and comfortable during the trip.",
+  },
+  {
+    name: "Priya Sharma",
+    rating: 5,
+    time: "3 months ago",
+    review:
+      "Excellent service for solo travel. Felt safe and comfortable during the trip.",
+  },
+  {
+    name: "Priya Sharma",
+    rating: 5,
+    time: "3 months ago",
+    review:
+      "Excellent service for solo travel. Felt safe and comfortable during the trip.",
+  },
+  {
+    name: "Priya Sharma",
+    rating: 5,
+    time: "3 months ago",
+    review:
+      "Excellent service for solo travel. Felt safe and comfortable during the trip.",
+  },
+];
+const faqs = [
+  {
+    question: "How much does a taxi cost in Varanasi?",
+    answer:
+      "Taxi fares in Varanasi depend on the distance, vehicle type, and duration. Local rides usually start from affordable per-kilometer rates, while outstation trips are charged based on total distance and time.",
+  },
+  {
+    question: "Which is the best taxi service in Varanasi?",
+    answer:
+      "The best taxi service offers clean vehicles, professional drivers, transparent pricing, and 24/7 availability. We focus on punctuality, safety, and customer satisfaction for every ride.",
+  },
+  {
+    question: "Is Ola/Uber available in Varanasi?",
+    answer:
+      "Yes, Ola and Uber operate in Varanasi. However, availability may vary depending on location and peak hours. Our taxi service ensures confirmed bookings and reliable pickups.",
+  },
+];
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -400 : 400,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Box
+        sx={{
+          height: "90vh",
+          backgroundImage: "url('/header1.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          color: "#fff",
+          px: 6,
+        }}
+      >
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Typography variant="h2" fontWeight="bold">
+            VARANASI CAB
+          </Typography>
+          <Typography sx={{ mt: 2, maxWidth: 500 }}>
+            Travel with comfort and safety. Best taxi service in Varanasi.
+          </Typography>
+          <Button variant="contained" sx={{ mt: 3, bgcolor: "#f57c00" }}>
+            Get Started
+          </Button>
+        </motion.div>
+      </Box>
+
+      {/* CAR SLIDER SECTION */}
+      <Container sx={{ py: 1, marginTop: "22px" }}>
+        <motion.div
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <Typography variant="h4" textAlign="center" gutterBottom>
+            Our Taxi Services
+          </Typography>
+        </motion.div>
+
+        <Box sx={{ position: "relative", py: 4 }}>
+          <IconButton
+            onClick={() => scroll("left")}
+            sx={{ position: "absolute", left: -20, top: "40%", zIndex: 2 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <ArrowBackIosNewIcon />
+          </IconButton>
+
+          <Box
+            ref={scrollRef}
+            sx={{
+              display: "flex",
+              gap: 3,
+              overflowX: "auto",
+              scrollBehavior: "smooth",
+              "&::-webkit-scrollbar": { display: "none" },
+              py: 2,
+            }}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {cars.map((car, index) => (
+              <Box key={index} sx={{ minWidth: 300 }}>
+                <CarCard {...car} />
+              </Box>
+            ))}
+          </Box>
+
+          <IconButton
+            onClick={() => scroll("right")}
+            sx={{ position: "absolute", right: -20, top: "40%" }}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
+      </Container>
+      <Box sx={{ bgcolor: "#e0f2f1", py: 10 }}>
+        <Container>
+          <motion.div
+            initial={{ y: -40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              textAlign="center"
+              gutterBottom
+            >
+              What Our Customers Say
+            </Typography>
+
+            <Typography textAlign="center" color="text.secondary" mb={6}>
+              Real experiences from travelers who explored with us
+            </Typography>
+          </motion.div>
+
+          <Grid container spacing={4}>
+            {reviews.map((item, index) => (
+              <Grid key={index} size={{ xs: 12, sm: 6, md: 4 }}>
+                <ReviewCard {...item} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      <Container sx={{ py: 10 }}>
+        <motion.div
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <Typography variant="h4" textAlign="center" gutterBottom>
+            Frequently Asked Questions
+          </Typography>
+        </motion.div>
+
+        {faqs.map((item, i) => (
+          <Accordion key={i} sx={{ mt: 2 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography style={{fontWeight:'700'}}>{item.question}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>{item.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Container>
+    </>
   );
 }
