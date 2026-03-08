@@ -43,7 +43,7 @@ export default function Navbar() {
           {/* Left Side - Logo + Name */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <Image
-              src="/logo22.png"
+              src="/logo1.png"
               alt="Taxi Service"
               width={80}
               height={80}
@@ -89,7 +89,10 @@ export default function Navbar() {
 
       {/* Drawer for Mobile */}
       <Drawer anchor="right" open={open} onClose={toggleDrawer}>
-        <Box sx={{ width: 250 }} role="presentation">
+        <Box
+          sx={{ width: 250, height: "100%", background: "#1976d2" }}
+          role="presentation"
+        >
           <List>
             {navItems.map((item) => (
               <ListItem key={item.label} disablePadding>
@@ -97,6 +100,12 @@ export default function Navbar() {
                   component={Link}
                   href={item.path}
                   onClick={toggleDrawer}
+                  style={{
+                    color: "#ffffff",
+                    backgroundColor: "#607a94",
+                    margin: "4px",
+                    borderRadius: "8px",
+                  }}
                 >
                   <ListItemText primary={item.label} />
                 </ListItemButton>
@@ -104,13 +113,15 @@ export default function Navbar() {
             ))}
 
             <ListItem disablePadding>
-              <ListItemButton
-                component={Link}
+              <Button
+                variant="contained"
+                color="secondary"
+                LinkComponent={Link}
                 href="/book-now"
-                onClick={toggleDrawer}
+                style={{ marginLeft: "12px", marginTop: "8px" }}
               >
-                <ListItemText primary="Book Now" />
-              </ListItemButton>
+                Book Now
+              </Button>
             </ListItem>
           </List>
         </Box>

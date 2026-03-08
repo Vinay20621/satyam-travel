@@ -67,30 +67,24 @@ export default function Footer() {
             <Box sx={{ display: "flex", mb: 2 }}>
               <LocationOnIcon sx={{ color: "#ffc107", mr: 1 }} />
               <Typography variant="body2">
-                457 Hari Om Nagar Colony, Samne Ghat,
-                Bhagwanpur, Varanasi UP - 221005
+                457 Hari Om Nagar Colony, Samne Ghat, Bhagwanpur, Varanasi UP -
+                221005
               </Typography>
             </Box>
 
             <Box sx={{ display: "flex", mb: 1 }}>
               <PhoneIcon sx={{ color: "#ffc107", mr: 1 }} />
-              <Typography variant="body2">
-                +91-7905568781
-              </Typography>
+              <Typography variant="body2">+91-7318547602</Typography>
             </Box>
 
             <Box sx={{ display: "flex", mb: 1 }}>
               <PhoneIcon sx={{ color: "#ffc107", mr: 1 }} />
-              <Typography variant="body2">
-                +91-7905004227
-              </Typography>
+              <Typography variant="body2">+91-7398324939</Typography>
             </Box>
 
             <Box sx={{ display: "flex", mb: 1 }}>
               <EmailIcon sx={{ color: "#ffc107", mr: 1 }} />
-              <Typography variant="body2">
-                info@varanasitaxibooking.in
-              </Typography>
+              <Typography variant="body2">shivesh610@gmail.com</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -98,18 +92,16 @@ export default function Footer() {
         {/* Bottom Bar */}
         <Divider sx={{ my: 4, borderColor: "#333" }} />
 
-        <Typography
-          variant="body2"
-          textAlign="center"
-          sx={{ pb: 3 }}
-        >
+        <Typography variant="body2" textAlign="center" sx={{ pb: 3 }}>
           © 2024 All Rights Reserved. Baba Travels –
           <Box component="span" sx={{ color: "#ffc107" }}>
-            {" "}Best Cab Services in Varanasi{" "}
+            {" "}
+            Best Cab Services in Varanasi{" "}
           </Box>
           | Website Designed and Powered by :
           <Box component="span" sx={{ color: "#ffc107" }}>
-            {" "}Varanasi Best Web Design Company
+            {" "}
+            Varanasi Best Web Design Company
           </Box>
         </Typography>
       </Container>

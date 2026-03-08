@@ -28,8 +28,6 @@ export default function ServicesPage() {
         const res = await fetch("/api/cars");
         const data = await res.json();
 
-        console.log("API RESPONSE:", data);
-
         const formatted = data?.map((row: string[]) => ({
           name: row[0],
           price: row[1],
